@@ -58,4 +58,13 @@ public class UserController {
         model.addAttribute("msg", "id:" + id + "对应的user不存在");
         return modelAndView;
     }
+
+    /*
+    * 返回接口给前端
+    * */
+    @RequestMapping(value = "/selectUserClient",method = RequestMethod.GET)
+    @ResponseBody
+    private User getUserServiceFormClient(@RequestParam("id") int id){
+        return userService.getUserById(id);
+    }
 }
