@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 如果有多个配置文件,使用<context:property-placeholder/>加载，加载了第一个就不会加载第二个了-->
+    <!-- 引入多个数据库配置文件 -->
+    <mvc:property-placeholder location="classpath:properties/jdbc.properties"/>
+    <!-- 开启注解配置 即Autowried -->
+    <!-- <context:annotation-config/> -->
+    <!--其实component-scan 就有了annotation-config的功能即把需要的类注册到了spring容器中 -->
+
+    <context:component-scan base-package="com.wangkai.pojo"/>
+    <context:component-scan base-package="com.wangkai.dao"/>
+
+
+    <!-- 配置数据源，使用阿里的Druid连接池 -->
+    <!--    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource1">-->
+    <!--        <property name="driverClassName" value="${jdbc.driverClassName}"/>-->
+    <!--        <property name="url" value="${jdbc.url}"/>-->
+    <!--        <property name="username" value="${jdbc.username}"/>-->
+    <!--        <property name="password" value="${jdbc.password}"/>-->
+    <!--    </bean>-->
+    <!--创建dbcp数据源连接池对象-->
+    <!--    <bean id="dataSource3" class="org.apache.commons.dbcp.BasicDataSource">-->
+    <!--        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>-->
+    <!--        <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"></property>-->
+    <!--        <property name="username" value="scott"></property>-->
+    <!--        <property name="password" value="tiger"></property>-->
+    <!--    </bean>-->
+
+    <!-- 配置数据源，使用c3p0连接池 -->
+    <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource2" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource2"/>
+    </bean>
+    <!-- 使用全注释事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+    <!--和mybatis相关的-->
+    <!--创建mybatis的SqlSessionFactory工厂类对象-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource2"/>
+        <!-- mybatis配置文件路径 -->
+        <property name="configLocation" value="classpath:spring-mybatis/mybatis-config.xml"/>
+        <!--        &lt;!&ndash; 自动扫描mapping.xml文件 &ndash;&gt;-->
+        <property name="mapperLocations" value="classpath:mapper/usermapper.xml"/>
+    </bean>
+
+
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+    <!--动态代理实现 不用写dao的实现 -->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 这里的basePackage 指定了dao层接口路径，这里的dao接口不用自己实现 -->
+        <property name="basePackage" value="com.wangkai.dao"/>
+        <!--        &lt;!&ndash; 如果只有一个数据源的话可以不用指定，但是如果有多个数据源的话必须要指定,value对应sqlSessionFactoryBean的id &ndash;&gt;-->
+        <!--        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
+    </bean>
+
+</beans>
