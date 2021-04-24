@@ -4,4 +4,5 @@ import com.wangkai.pojo.User;
 
 public interface UserService {
     User getUserById(int id);
+    User getUserByName(String username);
 }

@@ -14,4 +14,7 @@
     <select id="getUserById" parameterType="User" resultType="User">
         select * from userTable where id = #{id}
     </select>
+    <select id="getUserByName" parameterType="User" resultType="User">
+        select * from userTable where username = #{username}
+    </select>
 </mapper>
