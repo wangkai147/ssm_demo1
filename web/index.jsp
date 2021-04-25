@@ -5,11 +5,6 @@
     </title>
 </head>
 <body>
-<%--<jsp:forward page="admin/login.html"/>--%>
-<%--<jsp:forward page="WEB-INF/view/jsp/selectUser.jsp"/>--%>
-<%--重定向到登录页--%>
-<%
-    response.sendRedirect("admin/login.html");
-%>
+<jsp:forward page="WEB-INF/jsp/admin/login.jsp"/>
 </body>
 </html>

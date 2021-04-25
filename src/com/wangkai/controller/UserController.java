@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 /*
@@ -47,22 +48,38 @@ public class UserController {
      * RequestMapping : 请求映射 -- 把请求地址和方法绑定
      * value -- url地址
      * method -- 请求方式
-     *
+     * <p>
      * ModelAndView
+     * <p>
+     * Model model  -- 转发携带数据 model.addAttribute
+     * RedirectAttributes model  -- 重定向携带数据 model.addFlashAttribute
      */
-    @RequestMapping(value = "/selectUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/loginIn", method = RequestMethod.GET)
     public ModelAndView getUserService(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
 //        model.addAttribute("msg", "登录失败");
         //指定视图 -- 框架执行redirect重定向操作
         User user = userService.getUserByName(username);
         ModelAndView modelAndView = new ModelAndView();
+        //用户名存在
         if (user != null) {
-            modelAndView.setViewName("showUser");
-            model.addAttribute("msg", user);
-            return modelAndView;
+            //密码正确
+            if (user.getPassword().equals(password)) {
+                modelAndView.setViewName("/admin/index");
+                model.addAttribute("msg", user);
+            } else {
+                modelAndView.setViewName("/admin/login");
+                model.addAttribute("msg", "密码不正确");
+            }
+        } else {
+            modelAndView.setViewName("/admin/login");
+            model.addAttribute("msg", "用户不存在");
         }
-        modelAndView.setViewName("selectUser");
-        model.addAttribute("msg", "用户不存在");
+        return modelAndView;
+    }
+    @RequestMapping(value = "/initRightView", method = RequestMethod.GET)
+    public ModelAndView initRightView(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/admin/welcome");
         return modelAndView;
     }
 

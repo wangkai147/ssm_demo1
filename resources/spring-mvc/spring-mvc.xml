@@ -5,29 +5,45 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 扫描和springmvc相关的注解 -->
+    <!--  spring 可以自动去扫描 base-package下面的包或子包下面的Java文件，如果扫描到有Spring的相关
+    注解的类，则把这些类注册为Spring的bean -->
+    <context:component-scan base-package="com.wangkai.controller"/>
     <!-- springMVC注解驱动,开启注解支持 -->
     <mvc:annotation-driven/>
-    <!-- 扫描和springmvc相关的注解 -->
-    <context:component-scan base-package="com.wangkai.controller"/>
+
     <!-- context:component-scan 具有annotation-config 的功能 -->
     <!-- <context:annotation-config /> -->
 
     <!-- 将springMVC中的servlet不能处理的资源交由tomcat默认的servlet处理 -->
-<!--    方式一-->
-<!--    <mvc:default-servlet-handler/>-->
-<!--    方式二-->
+    <!--    方式一-->
+    <mvc:default-servlet-handler/>
+    <!--    方式二-->
     <!--配置静态资源的访问映射，此配置中的文件，将不被前端控制器拦截 -->
-<!--    <mvc:resources location="admin/css" mapping="/css/**"/>-->
-<!--    <mvc:resources location="admin/fonts" mapping="/fonts/**"/>-->
-<!--    <mvc:resources location="admin/images" mapping="/images/**"/>-->
-<!--    <mvc:resources location="admin/js" mapping="/js/**"/>-->
-<!--    <mvc:resources location="admin/lib" mapping="/lib/**"/>-->
-    <mvc:resources location="admin/" mapping="/admin/**"/>
+
+    <mvc:resources location="admin/fonts" mapping="/fonts/**"/>
+    <mvc:resources location="admin/images" mapping="/images/**"/>
+    <mvc:resources location="admin/js" mapping="/js/**"/>
+    <mvc:resources location="admin/lib" mapping="/lib/**"/>
+    <mvc:resources location="admin/css" mapping="/css/**"/>
+
+<!--    &lt;!&ndash; 配置拦截器 &ndash;&gt;-->
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <bean class="com.wangkai.interceptor.LoginInterceptor"/>-->
+<!--            &lt;!&ndash;exclude(排除)排除一些不拦截的请求路径-->
+<!-- <mvc:mapping path=""/>-->
+<!--&ndash;&gt;-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
+    <!-- 配置直接转发的页面 -->
+    <mvc:view-controller path="/" view-name="redirect:showUser" />
 
     <!-- 视图解析器 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--前缀：视图文件的路径-->
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/WEB-INF/jsp"/>
         <!--后缀：视图文件的扩展名-->
         <property name="suffix" value=".jsp"/>
     </bean>
