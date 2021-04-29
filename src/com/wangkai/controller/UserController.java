@@ -4,13 +4,8 @@ import com.wangkai.pojo.User;
 import com.wangkai.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 /*
@@ -35,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
+//@RequestMapping(value = "/user")
 public class UserController {
     /*
      * springmvc是使用自定义方法来处理请求的
@@ -54,30 +50,39 @@ public class UserController {
      * Model model  -- 转发携带数据 model.addAttribute
      * RedirectAttributes model  -- 重定向携带数据 model.addFlashAttribute
      */
-    @RequestMapping(value = "/loginIn", method = RequestMethod.GET)
-    public ModelAndView getUserService(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+    @RequestMapping(value = "/loginIn", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public User getUserService(@RequestParam("username") String username,@RequestParam("password") String password) {
 //        model.addAttribute("msg", "登录失败");
         //指定视图 -- 框架执行redirect重定向操作
-        User user = userService.getUserByName(username);
-        ModelAndView modelAndView = new ModelAndView();
-        //用户名存在
-        if (user != null) {
-            //密码正确
-            if (user.getPassword().equals(password)) {
-                modelAndView.setViewName("/admin/index");
-                model.addAttribute("msg", user);
+
+        System.out.println(username);
+
+        User userResult = userService.getUserByName(username);
+
+        if (userResult != null) {
+            //用户存在
+            if (userResult.getPassword().equals(password)) {
+                //密码正确
+                userResult.setCode("2000");
+                userResult.setMsg("登录成功");
+                return userResult;
             } else {
-                modelAndView.setViewName("/admin/login");
-                model.addAttribute("msg", "密码不正确");
+                //密码错误
+                userResult.setCode("2001");
+                userResult.setMsg("密码错误");
             }
         } else {
-            modelAndView.setViewName("/admin/login");
-            model.addAttribute("msg", "用户不存在");
+            userResult = new User();
+            //用户不存在
+            userResult.setCode("2002");
+            userResult.setMsg("用户不存在");
         }
-        return modelAndView;
+        return userResult;
     }
+
     @RequestMapping(value = "/initRightView", method = RequestMethod.GET)
-    public ModelAndView initRightView(){
+    public ModelAndView initRightView() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/admin/welcome");
         return modelAndView;

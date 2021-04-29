@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
-    <link rel="stylesheet" href="../../../admin/css/font.css">
-    <link rel="stylesheet" href="../../../admin/css/xadmin.css">
-    <script src="../../../admin/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="../../../admin/js/xadmin.js"></script>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/font.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/xadmin.css">
+    <script src="<%=request.getContextPath()%>/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -189,7 +189,7 @@
         </div>
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">开发信息</div>
+                <div class="layui-card-header">开发者信息</div>
                 <div class="layui-card-body ">
                     <table class="layui-table">
                         <tbody>
@@ -198,7 +198,7 @@
                             <td><a href="https://blog.csdn.net/qq_36310162/" target="_blank">访问博客</a></td>
                         </tr>
                         <tr>
-                            <th>开发者</th>
+                            <th>联系方式</th>
                             <td>乔治(2925285800@qq.com)</td>
                         </tr>
                         </tbody>

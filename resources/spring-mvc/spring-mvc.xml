@@ -21,11 +21,11 @@
     <!--    方式二-->
     <!--配置静态资源的访问映射，此配置中的文件，将不被前端控制器拦截 -->
 
-    <mvc:resources location="admin/fonts" mapping="/fonts/**"/>
-    <mvc:resources location="admin/images" mapping="/images/**"/>
-    <mvc:resources location="admin/js" mapping="/js/**"/>
-    <mvc:resources location="admin/lib" mapping="/lib/**"/>
-    <mvc:resources location="admin/css" mapping="/css/**"/>
+<!--    <mvc:resources location="/fonts/" mapping="/fonts/**"/>-->
+<!--    <mvc:resources location="/images/" mapping="/images/**"/>-->
+<!--    <mvc:resources location="/js/" mapping="/js/**"/>-->
+<!--    <mvc:resources location="/lib/" mapping="/lib/**"/>-->
+<!--    <mvc:resources location="/css/" mapping="/css/**"/>-->
 
 <!--    &lt;!&ndash; 配置拦截器 &ndash;&gt;-->
 <!--    <mvc:interceptors>-->
@@ -38,7 +38,7 @@
 <!--        </mvc:interceptor>-->
 <!--    </mvc:interceptors>-->
     <!-- 配置直接转发的页面 -->
-    <mvc:view-controller path="/" view-name="redirect:showUser" />
+<!--    <mvc:view-controller path="/" view-name="redirect:showUser" />-->
 
     <!-- 视图解析器 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -47,5 +47,5 @@
         <!--后缀：视图文件的扩展名-->
         <property name="suffix" value=".jsp"/>
     </bean>
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven/>
 </beans>

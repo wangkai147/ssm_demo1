@@ -1,12 +1,12 @@
 ;!function (win) {
 	"use strict";
-	var doc = document
+    const doc = document
 
-	,Xadmin = function(){
-	    this.v = '2.2'; //版本号
-	}
+        , Xadmin = function () {
+        this.v = '2.2'; //版本号
+    };
 
-	Xadmin.prototype.init = function() {
+    Xadmin.prototype.init = function() {
 		var tab_list = this.get_data();
 		for(var i in tab_list){
 			this.add_lay_tab(tab_list[i].title,tab_list[i].url,i);

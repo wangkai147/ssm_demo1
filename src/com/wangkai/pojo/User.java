@@ -17,6 +17,9 @@ public class User implements Serializable {
     private String username;
     private String password;
 
+    private String code;
+    private String msg;
+
     public int getId() {
         return id;
     }
@@ -39,5 +42,21 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }
