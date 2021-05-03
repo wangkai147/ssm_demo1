@@ -1,3 +1,4 @@
+<%@ page import="com.wangkai.constant.Global" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="x-admin-sm" lang="zh-CN">
 <head>
@@ -23,8 +24,9 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <blockquote class="layui-elem-quote">欢迎管理员：
-                        <span class="x-red">test</span>！当前时间:<span id="time"></span>
+                    <blockquote class="layui-elem-quote">欢迎管理员：<span
+                            class="x-red"><%=request.getSession().getAttribute(Global.USER_SESSION_NAME)%></span>！
+                        当前时间:<span id="time"></span>
                     </blockquote>
                 </div>
             </div>
@@ -36,14 +38,14 @@
                     <ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
                         <li class="layui-col-md2 layui-col-xs6">
                             <a href="javascript:;" class="x-admin-backlog-body">
-                                <h3>文章数</h3>
+                                <h3>今日访问量</h3>
                                 <p>
                                     <cite>66</cite></p>
                             </a>
                         </li>
                         <li class="layui-col-md2 layui-col-xs6">
                             <a href="javascript:;" class="x-admin-backlog-body">
-                                <h3>会员数</h3>
+                                <h3>总访问量</h3>
                                 <p>
                                     <cite>12</cite></p>
                             </a>
@@ -57,7 +59,7 @@
                         </li>
                         <li class="layui-col-md2 layui-col-xs6">
                             <a href="javascript:;" class="x-admin-backlog-body">
-                                <h3>商品数</h3>
+                                <h3>会员量</h3>
                                 <p>
                                     <cite>67</cite></p>
                             </a>

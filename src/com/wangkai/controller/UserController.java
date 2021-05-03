@@ -1,11 +1,16 @@
 package com.wangkai.controller;
 
+import com.wangkai.constant.Global;
 import com.wangkai.pojo.User;
 import com.wangkai.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /*
@@ -52,7 +57,7 @@ public class UserController {
      */
     @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public User getUserService(@RequestParam("username") String username,@RequestParam("password") String password) {
+    public User getUserService(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) {
 //        model.addAttribute("msg", "登录失败");
         //指定视图 -- 框架执行redirect重定向操作
 
@@ -66,6 +71,8 @@ public class UserController {
                 //密码正确
                 userResult.setCode("2000");
                 userResult.setMsg("登录成功");
+                request.getSession().setAttribute(Global.USER_SESSION,userResult);
+                request.getSession().setAttribute(Global.USER_SESSION_NAME,userResult.getUsername());
                 return userResult;
             } else {
                 //密码错误

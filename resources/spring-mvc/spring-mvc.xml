@@ -21,20 +21,21 @@
     <!--    方式二-->
     <!--配置静态资源的访问映射，此配置中的文件，将不被前端控制器拦截 -->
 
-<!--    <mvc:resources location="/fonts/" mapping="/fonts/**"/>-->
-<!--    <mvc:resources location="/images/" mapping="/images/**"/>-->
-<!--    <mvc:resources location="/js/" mapping="/js/**"/>-->
-<!--    <mvc:resources location="/lib/" mapping="/lib/**"/>-->
-<!--    <mvc:resources location="/css/" mapping="/css/**"/>-->
+    <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/lib/" mapping="/lib/**"/>
+    <mvc:resources location="/css/" mapping="/css/**"/>
 
     <!-- 配置拦截器 -->
         <mvc:interceptors>
             <mvc:interceptor>
                 <!-- 必须以 <mvc:mapping path=""/> 开始 -->
-                <mvc:mapping path="/**"/>
-                <mvc:exclude-mapping path="/loginPage"/>
-                <mvc:exclude-mapping path="/page/*"/>
-                <mvc:exclude-mapping path="/user/*"/>
+                <mvc:mapping path="/page/**"/>
+                <mvc:exclude-mapping path="/page/login"/>
+<!--                <mvc:exclude-mapping path="/user/login"/>-->
+<!--                <mvc:exclude-mapping path="/page/*"/>-->
+<!--                <mvc:exclude-mapping path="/user/*"/>-->
                 <bean class="com.wangkai.controller.LoginInterceptor"/>
             </mvc:interceptor>
         </mvc:interceptors>
