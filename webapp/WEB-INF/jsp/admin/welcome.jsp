@@ -24,7 +24,7 @@
             <div class="layui-card">
                 <div class="layui-card-body ">
                     <blockquote class="layui-elem-quote">欢迎管理员：
-                        <span class="x-red">test</span>！当前时间:2018-04-25 20:50:53
+                        <span class="x-red">test</span>！当前时间:<span id="time"></span>
                     </blockquote>
                 </div>
             </div>
@@ -213,5 +213,28 @@
     </div>
 </div>
 </div>
+<script>
+    function show() {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        month = month < 10 ? "0" + month : month;
+        let day = date.getDate();
+        day = day < 10 ? "0" + day : day;
+        let week = date.getDay();
+        week = "日一二三四五六".charAt(week);
+        week = "星期" + week;
+        let hour = date.getHours();
+        hour = hour < 10 ? "0" + hour : hour;
+        let minute = date.getMinutes();
+        minute = minute < 10 ? "0" + minute : minute;
+        let second = date.getSeconds();
+        second = second < 10 ? "0" + second : second;
+        document.getElementById("time").innerHTML = year + "." + month + "." + day + " " + week + " " + hour + ":" + minute + ":" + second;
+    }
+
+    show();
+    setInterval("show()", 1000);
+</script>
 </body>
 </html>

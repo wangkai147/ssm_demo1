@@ -30,7 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-//@RequestMapping(value = "/user")
+@RequestMapping(value = "/user")
 public class UserController {
     /*
      * springmvc是使用自定义方法来处理请求的
@@ -50,7 +50,7 @@ public class UserController {
      * Model model  -- 转发携带数据 model.addAttribute
      * RedirectAttributes model  -- 重定向携带数据 model.addFlashAttribute
      */
-    @RequestMapping(value = "/loginIn", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public User getUserService(@RequestParam("username") String username,@RequestParam("password") String password) {
 //        model.addAttribute("msg", "登录失败");

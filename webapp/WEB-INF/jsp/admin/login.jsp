@@ -54,7 +54,7 @@
                 ///selectUser
                 layer.msg('登录中，请稍后', function () {
                     $.ajax({
-                        url: "<%=request.getContextPath()%>/loginIn",
+                        url: "<%=request.getContextPath()%>/user/login",
                         type: "post",
                         data: ({
                             "username": data.field.username,
@@ -76,7 +76,7 @@
                             //登录成功
                             layer.msg('登录成功')
                             // window.location.href = 'http://www.baidu.com/';
-                            window.location.href="<%=request.getContextPath()%>/indexed";
+                            window.location.href="<%=request.getContextPath()%>/page/index";
 
                         } else if(data.code === "2001") {
                             //密码错误

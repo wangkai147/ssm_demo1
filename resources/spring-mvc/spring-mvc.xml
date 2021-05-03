@@ -27,16 +27,17 @@
 <!--    <mvc:resources location="/lib/" mapping="/lib/**"/>-->
 <!--    <mvc:resources location="/css/" mapping="/css/**"/>-->
 
-<!--    &lt;!&ndash; 配置拦截器 &ndash;&gt;-->
-<!--    <mvc:interceptors>-->
-<!--        <mvc:interceptor>-->
-<!--            <mvc:mapping path="/**"/>-->
-<!--            <bean class="com.wangkai.interceptor.LoginInterceptor"/>-->
-<!--            &lt;!&ndash;exclude(排除)排除一些不拦截的请求路径-->
-<!-- <mvc:mapping path=""/>-->
-<!--&ndash;&gt;-->
-<!--        </mvc:interceptor>-->
-<!--    </mvc:interceptors>-->
+    <!-- 配置拦截器 -->
+        <mvc:interceptors>
+            <mvc:interceptor>
+                <!-- 必须以 <mvc:mapping path=""/> 开始 -->
+                <mvc:mapping path="/**"/>
+                <mvc:exclude-mapping path="/loginPage"/>
+                <mvc:exclude-mapping path="/page/*"/>
+                <mvc:exclude-mapping path="/user/*"/>
+                <bean class="com.wangkai.controller.LoginInterceptor"/>
+            </mvc:interceptor>
+        </mvc:interceptors>
     <!-- 配置直接转发的页面 -->
 <!--    <mvc:view-controller path="/" view-name="redirect:showUser" />-->
 

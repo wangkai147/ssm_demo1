@@ -349,7 +349,7 @@
         </div>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='initRightView' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='<%=request.getContextPath()%>/user/initRightView' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
         </div>
         <div id="tab_show"></div>
