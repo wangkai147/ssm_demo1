@@ -25,6 +25,14 @@ public class PageController {
     public ModelAndView loginIn() {
         return new ModelAndView("/admin/login");
     }
+    @RequestMapping(value = "/statistics", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView statistics() {
+        return new ModelAndView("/admin/welcome1");
+    }
+    @RequestMapping(value = "/member-list", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView member_list() {
+        return new ModelAndView("/admin/member-list");
+    }
 
     @RequestMapping(value = "/loginout", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView loginOut(HttpServletRequest request) {

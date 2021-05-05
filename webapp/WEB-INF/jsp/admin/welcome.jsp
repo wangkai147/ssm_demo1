@@ -1,4 +1,5 @@
 <%@ page import="com.wangkai.constant.Global" %>
+<%@ page import="com.wangkai.constant.SessionCounter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="x-admin-sm" lang="zh-CN">
 <head>
@@ -47,14 +48,14 @@
                             <a href="javascript:;" class="x-admin-backlog-body">
                                 <h3>总访问量</h3>
                                 <p>
-                                    <cite>12</cite></p>
+                                    <cite>88</cite></p>
                             </a>
                         </li>
                         <li class="layui-col-md2 layui-col-xs6">
                             <a href="javascript:;" class="x-admin-backlog-body">
-                                <h3>回复数</h3>
+                                <h3>当前在线数</h3>
                                 <p>
-                                    <cite>99</cite></p>
+                                    <cite><%=SessionCounter.getActiveSessions()%></cite></p>
                             </a>
                         </li>
                         <li class="layui-col-md2 layui-col-xs6">
@@ -66,7 +67,7 @@
                         </li>
                         <li class="layui-col-md2 layui-col-xs6">
                             <a href="javascript:;" class="x-admin-backlog-body">
-                                <h3>文章数</h3>
+                                <h3>当前在线数</h3>
                                 <p>
                                     <cite>67</cite></p>
                             </a>

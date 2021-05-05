@@ -27,6 +27,10 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
         System.out.println("登录了，通过");
+        //统计在线人数
+
+
+
         return true;
     }
 

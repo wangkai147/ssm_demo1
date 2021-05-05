@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="x-admin-sm">
     <head>
         <meta charset="gb2312">
@@ -6,10 +6,10 @@
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-        <link rel="stylesheet" href="../../../admin/css/font.css">
-        <link rel="stylesheet" href="../../../admin/css/xadmin.css">
-        <script src="../../../admin/lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="../../../admin/js/xadmin.js"></script>
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/font.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/xadmin.css">
+        <script src="<%=request.getContextPath()%>/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/xadmin.js"></script>
         <!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
           <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>

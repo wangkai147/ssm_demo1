@@ -18,6 +18,11 @@
             org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
+    <listener>
+        <listener-class>
+            com.wangkai.constant.SessionCounter
+        </listener-class>
+    </listener>
 
     <!-- 配置字符编码过滤器 -->
     <filter>
@@ -41,14 +46,14 @@
         <url-pattern>*.jsp</url-pattern>
     </filter-mapping>
 
-<!--    <servlet>-->
-<!--        <servlet-name>welcome</servlet-name>-->
-<!--        <jsp-file>/WEB-INF/jsp/welcome.jsp</jsp-file>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>welcome</servlet-name>-->
-<!--        <url-pattern>/welcome.jsp</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <!--    <servlet>-->
+    <!--        <servlet-name>welcome</servlet-name>-->
+    <!--        <jsp-file>/WEB-INF/jsp/welcome.jsp</jsp-file>-->
+    <!--    </servlet>-->
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>welcome</servlet-name>-->
+    <!--        <url-pattern>/welcome.jsp</url-pattern>-->
+    <!--    </servlet-mapping>-->
 
     <!-- 配置Spring MVC前端核心控制器DispatcherServlet -->
     <servlet>
